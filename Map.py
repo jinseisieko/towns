@@ -1,6 +1,7 @@
 import pygame
 
 from Consts import *
+from Sprites import sprites
 
 
 class Map:
@@ -34,4 +35,7 @@ class Map:
         for y, line in enumerate(self.chunks.chunks):
             for x, town in enumerate(line):
                 if town is None:
+                    pygame.draw.rect(self.map, 0, (x * CHUNK_SIZE, y * CHUNK_SIZE, CHUNK_SIZE, CHUNK_SIZE), width=1)
+                else:
+                    self.map.blit(sprites[town.name], (x * CHUNK_SIZE, y * CHUNK_SIZE))
                     pygame.draw.rect(self.map, 0, (x * CHUNK_SIZE, y * CHUNK_SIZE, CHUNK_SIZE, CHUNK_SIZE), width=1)
