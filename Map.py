@@ -13,15 +13,13 @@ class Map:
         self.map = pygame.Surface((MAP_WIDTH * CHUNK_SIZE, MAP_HEIGHT * CHUNK_SIZE))
 
     def draw(self, screen):
-        screen.fill(0)
         screen.blit(self.map, (0, 0), (self.x, self.y, WIDTH, HEIGHT))
 
     def move(self, dx, dy):
         self.x += dx
         self.y += dy
-        self.x = max(-10, min(self.x, MAP_WIDTH * CHUNK_SIZE - WIDTH + 10))
-        self.y = max(-10, min(self.y, MAP_HEIGHT * CHUNK_SIZE - HEIGHT + 10))
-
+        self.x = max(0, min(self.x, MAP_WIDTH * CHUNK_SIZE - WIDTH))
+        self.y = max(0, min(self.y, MAP_HEIGHT * CHUNK_SIZE - HEIGHT))
 
     def update_map(self):
         self.map.fill((255, 255, 255))
