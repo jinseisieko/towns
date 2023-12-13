@@ -18,6 +18,8 @@ moving = False
 last_position_mouse = None
 
 while running:
+    position_mouse = pygame.mouse.get_pos()
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -25,6 +27,10 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 2 or event.button == 3:
                 moving = True
+
+            if event.button == 1:
+                chunks.set_selected(*map_.get_mouse_position(position_mouse))
+                map_.update_map()
 
         if event.type == pygame.MOUSEBUTTONUP:
             if event.button == 2 or event.button == 3:
@@ -35,7 +41,6 @@ while running:
         quit()
 
     if moving:
-        position_mouse = pygame.mouse.get_pos()
         if last_position_mouse is None:
             last_position_mouse = position_mouse
         else:
